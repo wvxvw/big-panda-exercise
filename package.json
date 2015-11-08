@@ -1,0 +1,27 @@
+{
+    "name": "big-panda-exercise",
+    "version": "0.0.0",
+    "description": "Job Interview Exercise for Big Panda",
+    "main": "index.js",
+    "scripts": {
+        "test": "grunt karma"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/wvxvw/big-panda-exercise.git"
+    },
+    "keywords": [
+        "exercise",
+        "big-panda",
+        "job",
+        "interview"
+    ],
+    "author": "Oleg Sivokon",
+    "license": "BSD",
+    "bugs": {
+        "url": "https://github.com/wvxvw/big-panda-exercise/issues"
+    },
+    "devDependencies": {
+        "grunt-cli": "~0.1.11"
+    }
+}
