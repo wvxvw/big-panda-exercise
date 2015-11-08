@@ -1,7 +1,7 @@
 {
     "name": "big-panda-exercise",
     "version": "0.0.0",
-    "description": "Job Interview Exercise for Big Panda",
+    "description": "Job Interview Exercise for BigPanda",
     "main": "index.js",
     "scripts": {
         "test": "grunt karma"
@@ -22,6 +22,10 @@
         "url": "https://github.com/wvxvw/big-panda-exercise/issues"
     },
     "devDependencies": {
-        "grunt-cli": "~0.1.11"
+        "grunt-cli": "~0.1.11",
+        "grunt-contrib-jshint": "~0.1.0",
+        "grunt-contrib-clean": "~0.4.0",
+        "node-static": "~0.7.7",
+        "routington": "~1.0.3"
     }
 }
