@@ -1,2 +1,2 @@
 { "port": 8000,
-  "webroot": "./server/httpdoc" }
+  "webroot": "./client/httpdoc" }

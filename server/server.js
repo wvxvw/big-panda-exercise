@@ -1,6 +1,7 @@
 var http       = require('http'),
     https      = require('https'),
-    stat       = require('node-static'),
+    fs         = require('fs'),
+    stat       = require('node-static-alias'),
     url        = require('url'),
     routington = require('routington'),
     router     = routington(),
@@ -11,7 +12,20 @@ function start(config, api) {
     var webroot = config.webroot,
         file = new stat.Server(webroot, { 
             cache: 600, 
-            headers: { 'X-Powered-By': 'node-static' } });
+            headers: { 'X-Powered-By': 'node-static' },
+            alias: {
+                match: function (requested) {
+                    var modules = fs.readdirSync('./node_modules').map(String);
+                    return modules.indexOf(
+                        requested.reqPath.replace(/^\/([^\/]+).*/g, '$1')) > -1;
+                },
+                serve: function (requested) {
+                    // TODO: This should compute the relative path to node_moduoles.
+                    return '../../node_modules' + requested.reqPath;
+                },
+                allowOutside: true
+            }
+        });
 
     http.createServer(function (req, res) {
         var parsed = url.parse(req.url),

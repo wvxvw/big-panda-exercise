@@ -1,0 +1,7 @@
+.alert {
+    background-color: teal;
+    color: white
+}
+td:nth-child(2) {
+    background-color: #eee
+}
