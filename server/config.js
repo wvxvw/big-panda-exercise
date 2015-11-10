@@ -1,4 +1,4 @@
-/* global require, process, module */
+/* global: require, process, module */
 
 var fs = require('fs');
 

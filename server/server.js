@@ -1,3 +1,5 @@
+/* global: require */
+
 var http       = require('http'),
     https      = require('https'),
     fs         = require('fs'),
@@ -13,6 +15,10 @@ function start(config, api) {
         file = new stat.Server(webroot, { 
             cache: 600, 
             headers: { 'X-Powered-By': 'node-static' },
+            // I chose to use `node-static-alias' because I might need to load
+            // some libraries during testing, which I don't load otherwise.
+            // This hook is currently not used, so, in general, the code can be
+            // replaced with `node-static' without any losses.
             alias: {
                 match: function (requested) {
                     var modules = fs.readdirSync('./node_modules').map(String);
@@ -30,8 +36,6 @@ function start(config, api) {
     http.createServer(function (req, res) {
         var parsed = url.parse(req.url),
             handler = ((router.match(parsed.pathname) || {}).node || {}).handler;
-        console.log('url: ' + req.url);
-        console.log('handler: ' + handler);
         if (handler) {
             handler(res);
         } else {
