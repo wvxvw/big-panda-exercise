@@ -42,7 +42,7 @@ function start(config, api) {
                             file.serveFile('/index.html', 200, {}, req, res);
                         }
                         else if ([404, 500].indexOf(err.status) > -1) {
-                            console.error('Error serving: ' + req.url);
+                            console.warn('Error serving: ' + req.url);
                             file.serveFile(err.status + '.html',
                                            err.status, {}, req, res);
                         } else {
@@ -58,6 +58,12 @@ function start(config, api) {
         }
     }).listen(config.port);
 
+    // Unfortunately, all Node.js libraries which advertise themselves
+    // as synchronous HTTP have serious problems: some don't support TLS.
+    // Others are too clumsy or have very bad API.  This bit of code assumes
+    // that Github API will use HTTPS protocol (which they currently do).
+    // One could write an adapter to hide the difference between HTTP and
+    // HTTPS, but I chose to make it simple.
     function forward(res, to) {
         https.get(to, function (result) {
             result.on('data', function (data) {
@@ -67,6 +73,9 @@ function start(config, api) {
         });
     }
 
+    // The ``router'' is really half-baked, so you need to make it a router
+    // yourself.  Again, maybe, given a large scale of the project I'd write
+    // an actual router, but I chose to make it simple.
     router.get = function (from, to) {
         router.define(from)[0].handler = function (res) { forward(res, to); };
     };

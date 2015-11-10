@@ -1,0 +1,42 @@
+* About
+  This project is a job interview assignment written for [[https://bigpanda.io/][BigPanda]],
+  full-stack programmer position.
+
+* Obtaining
+  The project is available from Github:
+  #+BEGIN_SRC sh
+    git clone https://github.com/wvxvw/big-panda-exercise.git
+  #+END_SRC
+
+* Installing
+  Navigate to the project directory and execute:
+  #+BEGIN_SRC sh
+    npm install
+  #+END_SRC
+  You need =Node.js= installed in order to do this.
+
+* Running
+  The project comes equipped with a small HTTP server, which proxies
+  Github status to the client-side JavaScript.  To start the server,
+  navigate to project directory and:
+  #+BEGIN_SRC sh
+    ./run
+  #+END_SRC
+  In case you change the project layout (s.a. you move the
+  [[./client/httpdoc]] directory elsewhere), some server settings are
+  stored in [[./server/config.json]].
+
+  The server prints some info to the console.  At present no logging
+  management is available.
+
+* Testing
+  The project has but a single unit test.  Mostly designed to be a
+  test template.  To run tests navigate to the project directory and
+  execute:
+  #+BEGIN_SRC sh
+    grunt karma
+  #+END_SRC
+  Developers can also run linter on the (very few) sources of the project:
+  #+BEGIN_SRC sh
+    grunt jshint
+  #+END_SRC

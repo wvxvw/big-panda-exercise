@@ -3,7 +3,7 @@
 var fs = require('fs');
 
 function optParse(argv) {
-    // Do not use `node-commandline' it's too bad :(
+    // Do not use `node-commandline' it has multiple issues
     return { program: argv[0], script: argv[1] };
 }
 

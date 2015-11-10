@@ -1,4 +1,4 @@
-/* global angular */
+/* global: angular */
 
 var api = angular.module('GithubApi', []);
 api.controller('GithubStatus', function ($scope, $http) {
